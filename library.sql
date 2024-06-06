@@ -1,6 +1,6 @@
 -- Creacion del modelo de datos library-
 
--- drop database library; -- Reset base de datos
+drop database library; -- Reset base de datos
 create database library;
 use library; -- Seleccion de base de datos
 
@@ -9,13 +9,13 @@ use library; -- Seleccion de base de datos
 -- Creando tablas
 CREATE TABLE school (
     id_school INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(45) NOT NULL,
+    `name` VARCHAR(100) NOT NULL,
     PRIMARY KEY (id_school)
 );
 
 CREATE TABLE career (
     id_career INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(45) NOT NULL,
+    `name` VARCHAR(100) NOT NULL,
     school INT NOT NULL,
     PRIMARY KEY (id_career),
     FOREIGN KEY (school)
@@ -24,8 +24,8 @@ CREATE TABLE career (
 
 CREATE TABLE student (
     id_student INT NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(45) NOT NULL,
-    last_name VARCHAR(45) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
     identity INT NOT NULL UNIQUE,
     career INT NOT NULL,
     PRIMARY KEY (id_student),
@@ -35,25 +35,25 @@ CREATE TABLE student (
 
 CREATE TABLE university_staff (
     id_universitystaff INT NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(45) NOT NULL,
-    last_name VARCHAR(45) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
     identity INT NOT NULL UNIQUE,
-    staff VARCHAR(45) NOT NULL,
+    staff VARCHAR(100) NOT NULL,
     primary key (id_universitystaff)
 );
 
 CREATE TABLE librarian (
     id_librarian INT NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(45) NOT NULL,
-    last_name VARCHAR(45) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
     identity INT NOT NULL UNIQUE,
     PRIMARY KEY (id_librarian)
 );
 
 CREATE TABLE books (
     id_books INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(45) NOT NULL,
-    author VARCHAR(45) NOT NULL,
+    `name` VARCHAR(200) NOT NULL,
+    author VARCHAR(200) NOT NULL,
     career INT NOT NULL,
     PRIMARY KEY (id_books),
     FOREIGN KEY (career)
@@ -63,7 +63,7 @@ CREATE TABLE books (
 CREATE TABLE inventory_control (
     id_inventorycontrol INT NOT NULL AUTO_INCREMENT,
     book INT NOT NULL,
-    `status` VARCHAR(45) NOT NULL,
+    `status` VARCHAR(200) NOT NULL,
     PRIMARY KEY (id_inventorycontrol),
     FOREIGN KEY (book)
         REFERENCES books (id_books)
@@ -71,9 +71,10 @@ CREATE TABLE inventory_control (
 
 CREATE TABLE to_buy (
     id_tobuy INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(45) NOT NULL,
+    `name` VARCHAR(200) NOT NULL,
     career INT NOT NULL,
-    `status` VARCHAR(45) NOT NULL,
+    `status` VARCHAR(200) NOT NULL,
+    author varchar(200) NOT NULL,
     PRIMARY KEY (id_tobuy),
     FOREIGN KEY (career)
         REFERENCES career (id_career)
